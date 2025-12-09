@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Projek</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                    },
+                    colors: {
+                        nike: '#f5f5f5',
+                        volt: '#ccff00',
+                        charcoal: '#111111',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .reveal-element {
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="bg-black text-nike font-sans antialiased overflow-x-hidden selection:bg-volt selection:text-black">
+    <div class="fixed inset-0 z-[-1]">
+        <img src="" 
+             alt="Background Texture" 
+             class="w-full h-full object-cover opacity-30 grayscale blur-sm">
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+    </div>
+    <a href="index.html" class="fixed top-6 left-6 z-50 group flex items-center gap-2 text-white/70 hover:text-volt transition-colors duration-300">
+        <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center backdrop-blur-md group-hover:border-volt group-hover:bg-volt/10 transition-all">
+            <i class="fas fa-arrow-left text-sm group-hover:-translate-x-1 transition-transform"></i>
+        </div>
+        <span class="text-sm font-medium tracking-widest uppercase opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">Kembali</span>
+    </a>
+    <main class="relative w-full min-h-screen pb-20">
+        <section class="relative w-full h-[60vh] md:h-[80vh] flex items-end justify-center pb-20 overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="banjir.png" 
+                     alt="Foto Projek Nike" 
+                     class="w-full h-full object-cover object-center scale-105 hover:scale-100 transition-transform duration-[2s]">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            </div>
+            <div class="relative z-10 text-center px-4 reveal-element opacity-0 translate-y-10">
+                <span class="text-volt font-bold tracking-[0.3em] uppercase text-sm mb-2 block drop-shadow-md">Project 03</span>
+                
+                <h1 class="font-display text-5xl md:text-8xl font-bold uppercase italic tracking-tighter leading-none mb-6 drop-shadow-2xl">
+                    Lamp Turn Control <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">[White Mobile]</span>
+                </h1>
+                <p class="text-gray-200 text-xl max-w-2xl mx-auto font-bold mb-10 drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">
+                    Arduino Based
+                </p>
+
+            </div>
+            
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/50">Lihat ke bawah
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+        <section class="max-w-4xl mx-auto px-6 py-12 md:py-24 space-y-24">
+            <div class="grid md:grid-cols-12 gap-8 items-start reveal-element opacity-0 translate-y-16">
+                <div class="md:col-span-4">
+                    <h2 class="font-display text-3xl md:text-4xl font-bold uppercase text-white mb-2 border-l-4 border-volt pl-4">Pengenalan</h2>
+                    <span class="text-xs font-mono text-gray-500">Latar Belakang
+                    <p class="text-gray-300 leading-relaxed text-lg"> Indonesia merupakan negara tropis dengan curah hujan yang tinggi. Terutama di musim penghujan, risiko terjadinya banjir atau naiknya debit air secara tiba-tiba sangat tinggi. Seringkali, air masuk ke dalam rumah atau pemukiman saat penghuni sedang lengah atau tertidur, sehingga menyebabkan keterlambatan dalam menyelamatkan barang-barang berharga yang berada di lantai bawah.
+Alat peringatan batas air (Water Level Alert) yang ada di pasaran seringkali mahal atau sulit dipasang. Oleh karena itu, diperlukan sebuah inovasi alat pendeteksi banjir berbasis mikrokontroler (Arduino) yang sederhana namun efektif. Sistem ini bekerja dengan mendeteksi ketinggian air menggunakan sensor water level, yang kemudian akan memicu buzzer (alarm) untuk berbunyi sebagai peringatan dini.
+<br><br>
+B. Tujuan Proyek<br>
+Tujuan utama dari pengembangan alat ini adalah:<br><br>
+
+1. Peringatan Dini: Memberikan waktu bagi pengguna untuk mengevakuasi barang sebelum air mencapai level yang merusak.
+<br>
+2. Desain Portabel: Merancang alat yang mudah dipindahkan dan dipasang di mana saja tanpa instalasi listrik yang rumit, sehingga mengurangi risiko korsleting listrik saat banjir.
+<br>
+3.Otomasi: Menggantikan cara manual memantau ketinggian air, baik untuk banjir maupun pengisian tandon air.
+<br><br>
+C. Manfaat<br><br>
+1.Antisipasi Kerugian: Meminimalkan kerusakan perabot rumah tangga akibat terendam banjir.<br>
+2.Multifungsi: Selain untuk banjir, alat ini dapat digunakan untuk mendeteksi luapan air pada bak mandi atau tandon air agar tidak terbuang percuma.<br>
+3.Pemantauan Tanpa Visual: Pengguna dapat mengetahui air telah naik tanpa harus melihat langsung ke lokasi, cukup dengan mendengar suara alarm
+                    </p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-12 gap-8 items-start reveal-element opacity-0 translate-y-16">
+                <div class="md:col-span-4">
+                    <h2 class="font-display text-3xl md:text-4xl font-bold uppercase text-white mb-2 border-l-4 border-volt pl-4">Aspek Teknis</h2>
+                    <span class="text-xs font-mono text-gray-500">Pembahasan
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        A. Cara kerja alat<br>
+Agar mudah dipahami, berikut merupakan alur kerja alat ini:<br>
+
+[1] Pendeteksian: Sensor water level diletakkan pada titik batas ketinggian air yang ingin dipantau (misalnya: 5 cm dari lantai).<br><br>
+[2]Pemrosesan: Saat air menyentuh garis-garis konduktor pada sensor, sensor mengirimkan sinyal listrik ke otak alat (Arduino Uno).<br><br>
+[3]Peringatan: Arduino membaca sinyal tersebut. Jika sinyal menunjukkan adanya air, Arduino memerintahkan buzzer untuk mengeluarkan suara keras dan lampu LED menyala sebagai indikator visual.<br><br>
+B. Daftar Komponen dan Estimasi Biaya (Diperbarui 2024/2025)<br>
+Berikut adalah spesifikasi bahan yang dibutuhkan berdasarkan desain asli, namun dengan penyesuaian harga pasar elektronik dengan(estimasi harga marketplace Indonesia 2022/2023)</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-element opacity-0 translate-y-16">
+                <div class="h-64 md:h-80 bg-gray-800 rounded-lg overflow-hidden group border border-white/5">
+                    <img src="biaya.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="Detail 1">
+                </div>
+                <div class="h-64 md:h-80 bg-gray-800 rounded-lg overflow-hidden group border border-white/5">
+                    <img src="https://images.unsplash.com/photo-1597045566677-8cf032ed6634?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="Detail 2">
+                </div>
+            </div>
+            <div class="grid md:grid-cols-12 gap-8 items-start reveal-element opacity-0 translate-y-16">
+                <div class="md:col-span-4">
+                    <h2 class="font-display text-3xl md:text-4xl font-bold uppercase text-white mb-2 border-l-4 border-volt pl-4">Kesimpulan</h2>
+                    <span class="text-xs font-mono text-gray-500">Penutup
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        Proyek ini dimulai dengan visi sederhana: bagaimana menciptakan siluet yang menghormati warisan klasik Nike sekaligus mendorong batas teknologi material modern. Mengambil inspirasi dari aerodinamika jet tempur dan struktur organik.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed text-lg mt-4">
+                        Warna gelap dominan dipilih untuk menonjolkan tekstur material, sementara aksen <span class="text-volt font-bold">Volt</span> memberikan energi kinetik.
+                    </p>
+                </div>
+            </div>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-element opacity-0 translate-y-16">
+                <div class="h-64 md:h-80 bg-gray-800 rounded-lg overflow-hidden group border border-white/5">
+                    <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="Detail 1">
+                </div>
+            <div class="reveal-element opacity-0 translate-y-16">
+                <div class="bg-white/5 border border-white/10 p-8 md:p-12 rounded-2xl backdrop-blur-sm shadow-2xl">
+                    <h2 class="font-display text-3xl font-bold uppercase text-white mb-8 text-center">Rangkuman Proyek</h2>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+                        <div class="py-4 md:py-0">
+                            <h3 class="text-volt font-bold text-4xl mb-2">85%</h3>
+                            <p class="text-sm text-gray-400 uppercase tracking-widest">Recycled</p>
+                        </div>
+                        <div class="py-4 md:py-0">
+                            <h3 class="text-volt font-bold text-4xl mb-2">240g</h3>
+                            <p class="text-sm text-gray-400 uppercase tracking-widest">Weight</p>
+                        </div>
+                        <div class="py-4 md:py-0">
+                            <h3 class="text-volt font-bold text-4xl mb-2">2024</h3>
+                            <p class="text-sm text-gray-400 uppercase tracking-widest">Release</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="w-full flex flex-col items-center justify-center py-20 reveal-element opacity-0 translate-y-10">
+            <a href="projek2.html" class="group relative inline-flex items-center gap-4 px-8 py-4 bg-white text-black font-bold font-display uppercase tracking-wider overflow-hidden transition-transform hover:scale-105">
+                <span>Next Project</span>
+                <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                <div class="absolute bottom-0 left-0 w-full h-1 bg-volt scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+            </a>
+            <div class="mt-12 opacity-30 hover:opacity-100 transition-opacity duration-500">
+                <i class="fab fa-nike text-5xl"></i>
+            </div>
+        </footer>
+
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-10', 'translate-y-16');
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal-element').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
