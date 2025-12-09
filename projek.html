@@ -109,11 +109,63 @@ Agar mudah dipahami, berikut merupakan alur kerja alat ini:<br>
 [3]Peringatan: Arduino membaca sinyal tersebut. Jika sinyal menunjukkan adanya air, Arduino memerintahkan buzzer untuk mengeluarkan suara keras dan lampu LED menyala sebagai indikator visual.<br><br>
 B. Daftar Komponen dan Estimasi Biaya (Diperbarui 2024/2025)<br>
 Berikut adalah spesifikasi bahan yang dibutuhkan berdasarkan desain asli, namun dengan penyesuaian harga pasar elektronik dengan(estimasi harga marketplace Indonesia 2022/2023)</p>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-element opacity-0 translate-y-16">
-                <div class="h-64 md:h-80 bg-gray-800 rounded-lg overflow-hidden group border border-white/5">
-                    <img src="biaya.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="Detail 1">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-element opacity-0 translate-y-16">
+    <div class="h-64 md:h-80 bg-gray-800 rounded-lg overflow-hidden group border border-white/5">
+        <img src="biaya.png" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="Detail 1">
+    </div>
+</div>
+<p class="text-gray-300 leading-relaxed text-lg">C. Desain Skematik<br>
+ Alat ini merangkai sensor ke pin analog Arduino, dan Buzzer/LED ke pin digital Arduino. Desain fisik disarankan menggunakan kotak tertutup (Case Box) agar komponen elektronik aman dari cipratan air, dengan sensor menjulur keluar ke arah bawah.<br>
+Sebelum memasukkan kode, pastikan kabel dipasang di posisi yang benar sesuai kode ini:<br>
+Sensor Water Level:<br>
+Kaki (+) / VCC → ke pin 5V Arduino<br>
+Kaki (-) / GND → ke pin GND Arduino<br>
+Kaki Signal (S) → ke pin A0 Arduino<br><br>
+Buzzer (Alarm):<br>
+Kaki Positif (+) → ke pin 8 Arduino<br>
+Kaki Negatif (-) → ke pin GND Arduino<br><br>
+Lampu LED:<br>
+Kaki Positif (Panjang) → ke pin 9 Arduino (disarankan tambah resistor)<br>
+Kaki Negatif (Pendek) → ke pin GND Arduino<br>Salin Kode ini ke Aplikasi Arduino IDE<br>
+<p class="text-blue-400">// DEFINISI PIN SETIAP KOMPONEN<br>
+const int pinSensor = A0;  // Pin untuk sensor air<br>
+const int pinBuzzer = 8;   // Pin untuk speaker alarm (Buzzer)<br>
+const int pinLED = 9;      // Pin untuk lampu indikator<br>
+// VARIABEL VALUENYA<br>
+int nilaiAir = 0;          // Wadah untuk menyimpan data ketinggian air<br>
+int batasBahaya = 300;     // Batas sensitivitas (Bisa diubah 100-700)<br><br>
+void setup() {<br>
+  pinMode(pinBuzzer, OUTPUT); // Mengatur Buzzer sebagai output suaranya<br>
+  pinMode(pinLED, OUTPUT);    // Mengatur LED sebagai output notif cahayanya<br>
+  pinMode(pinSensor, INPUT);  // Mengatur Sensor sebagai input pendeteksinya<br><br>
+  Serial.begin(9600);         // Mengaktifkan monitor serial,angkanya bisa cek di perangkat anda<br>
+}<br>
+void loop() {<br>
+  // Bagian perulangan<br><br>
+  // 1. Inputan data dari sensor<br>
+  nilaiAir = analogRead(pinSensor); <br> 
+  // 2. Tampilkan angka ketinggian air di layar<br> 
+  // Ini bisa untuk mengecek apakah sensor rusak atau tidak<br>
+  Serial.print("Ketinggian Air: ");<br>
+  Serial.println(nilaiAir);<br>
+  // 3. Logika Alarm (JIKA air tinggi, MAKA bunyi)<br>
+  if (nilaiAir > batasBahaya) {<br>
+    // Kondisi BANJIR / AIR PENUH<br>
+    digitalWrite(pinBuzzer, HIGH); // Nyalakan Alarm (Biiip!)<br>
+    digitalWrite(pinLED, HIGH);    // Nyalakan Lampu<br>
+    delay(100);                    // Bunyi cepat (biip-biip)<br>
+    digitalWrite(pinBuzzer, LOW);  <br>
+    digitalWrite(pinLED, LOW);<br>
+    delay(100);<br>
+  } <br>
+  else {<br>
+    // Kondisi AMAN / KERING<br>
+    digitalWrite(pinBuzzer, LOW);  // Matikan Alarm<br>
+    digitalWrite(pinLED, LOW);     // Matikan Lampu<br>
+  }<br><br>
+  delay(500); // Jeda setengah detik sebelum perulangan<br>
+}</p>
+</p>
                 </div>
             </div>
             <div class="grid md:grid-cols-12 gap-8 items-start reveal-element opacity-0 translate-y-16">
@@ -121,33 +173,32 @@ Berikut adalah spesifikasi bahan yang dibutuhkan berdasarkan desain asli, namun 
                     <h2 class="font-display text-3xl md:text-4xl font-bold uppercase text-white mb-2 border-l-4 border-volt pl-4">Kesimpulan</h2>
                     <span class="text-xs font-mono text-gray-500">Penutup
                     <p class="text-gray-300 leading-relaxed text-lg">
-                        Proyek ini dimulai dengan visi sederhana: bagaimana menciptakan siluet yang menghormati warisan klasik Nike sekaligus mendorong batas teknologi material modern. Mengambil inspirasi dari aerodinamika jet tempur dan struktur organik.
-                    </p>
-                    <p class="text-gray-300 leading-relaxed text-lg mt-4">
-                        Warna gelap dominan dipilih untuk menonjolkan tekstur material, sementara aksen <span class="text-volt font-bold">Volt</span> memberikan energi kinetik.
-                    </p>
+                        A. Kesimpulan<br>
+Proyek "Alarm Antisipasi Banjir" adalah solusi teknologi tepat guna yang efektif untuk rumah tangga di daerah rawan banjir. Alat ini berfungsi sebagai "penjaga" yang akan membangunkan pengguna saat air mulai masuk, atau memberi tahu saat penampungan air penuh. Dengan biaya produksi sekitar Rp 140.000, alat ini menawarkan perlindungan aset yang nilainya jauh lebih besar.<br><br>
+B. Saran Pengembangan<br>
+Untuk pengembangan selanjutnya, disarankan menambahkan modul IoT (seperti ESP8266) agar peringatan tidak hanya berupa suara alarm, tetapi juga bisa mengirim notifikasi ke WhatsApp atau Telegram pemilik rumah
                 </div>
             </div>
              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-element opacity-0 translate-y-16">
                 <div class="h-64 md:h-80 bg-gray-800 rounded-lg overflow-hidden group border border-white/5">
-                    <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="Detail 1">
+                    <img src="sensor.webp" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" alt="Detail 1">
                 </div>
             <div class="reveal-element opacity-0 translate-y-16">
                 <div class="bg-white/5 border border-white/10 p-8 md:p-12 rounded-2xl backdrop-blur-sm shadow-2xl">
-                    <h2 class="font-display text-3xl font-bold uppercase text-white mb-8 text-center">Rangkuman Proyek</h2>
+                    <h2 class="font-display text-3xl font-bold uppercase text-white mb-8 text-center">ESTIMASI PENGERJAAN PROJEK</h2>
                     
                     <div class="grid md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
                         <div class="py-4 md:py-0">
-                            <h3 class="text-volt font-bold text-4xl mb-2">85%</h3>
-                            <p class="text-sm text-gray-400 uppercase tracking-widest">Recycled</p>
+                            <h3 class="text-volt font-bold text-4xl mb-2">110.000-140.000 IDR</h3>
+                            <p class="text-sm text-gray-400 uppercase tracking-widest">Biaya</p>
                         </div>
                         <div class="py-4 md:py-0">
-                            <h3 class="text-volt font-bold text-4xl mb-2">240g</h3>
-                            <p class="text-sm text-gray-400 uppercase tracking-widest">Weight</p>
+                            <h3 class="text-volt font-bold text-4xl mb-2">2-5 Hari</h3>
+                            <p class="text-sm text-gray-400 uppercase tracking-widest">Durasi</p>
                         </div>
                         <div class="py-4 md:py-0">
-                            <h3 class="text-volt font-bold text-4xl mb-2">2024</h3>
-                            <p class="text-sm text-gray-400 uppercase tracking-widest">Release</p>
+                            <h3 class="text-volt font-bold text-4xl mb-2">Medium</h3>
+                            <p class="text-sm text-gray-400 uppercase tracking-widest">Kesulitan</p>
                         </div>
                     </div>
                 </div>
