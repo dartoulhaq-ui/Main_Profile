@@ -1,84 +1,230 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://fonts.googleapis.com; style-src 'self' https://fonts.googleapis.com;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil iMDe</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="video-background">
-        <video autoplay muted loop playsinline>
-            <source src="bkg.mp4" type="video/mp4">
-            Browser Anda tidak mendukung tag video.
-        </video>
-    </div>
+    <title>iMDe Profil Site</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-    <header class="header">
-        <div class="logo-container">
-            <a href="https://dartoulhaq-ui.github.io/IMDE_Main/beranda.html#informasi">
-            <img src="iM.png" alt="Logo 1" class="logo logo-1">
-            <img src="iMde logo.jpeg" alt="Logo 2" class="logo logo-2">
-        </a>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111; 
+            color: white;
+            overflow-x: hidden;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .profile-ring {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: #fff;
+            border-bottom-color: #333;
+            animation: spin-slow 4s linear infinite;
+            z-index: 1;
+        }
+        .silver-fire {
+            background: linear-gradient(to bottom, #ffffff, #999999);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 
+                0px -1px 0px rgba(255,255,255,0.5),
+                0px 0px 10px rgba(255, 255, 255, 0.4),
+                0px 0px 20px rgba(192, 192, 192, 0.3),
+                0px 0px 40px rgba(128, 128, 128, 0.2);
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.9; text-shadow: 0 0 10px rgba(255,255,255,0.4); }
+            100% { opacity: 1; text-shadow: 0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(192,192,192,0.5); }
+        }
+
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .video-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.3); 
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 transition-all duration-300 backdrop-blur-md bg-black/50 border-b border-white/10" id="navbar">
+        <div class="relative group cursor-pointer">
+            <div class="relative w-12 h-12 md:w-15 md:h-15">
+                <div class="profile-ring"></div>
+                <a href="https://dartoulhaq-ui.github.io/IMDE_Main/beranda.html">
+                <img src="profil.png" 
+                     alt="Profile" 
+                     class="w-full h-full object-cover rounded-full relative z-10 border-2 border-black"
+                     onerror="this.src='https://via.placeholder.com/150'">
+                </a>
+            </div>
+        </div>
+        <div class="flex gap-4 md:gap-8 items-center">
+            <a href="#projects" class="text-xs md:text-sm font-bold uppercase tracking-widest text-white hover:text-gray-300 transition-colors relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-white after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">
+                Lihat Projek
+            </a>
+            <a href="#contact" class="px-4 py-1.5 md:px-5 md:py-2 text-xs md:text-sm font-bold uppercase tracking-widest text-black bg-white rounded-full hover:bg-gray-200 transition-all transform hover:scale-105">
+                Hubungi
+            </a>
+        </div>
+    </nav>
+
+    <header class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-20 px-4">
+        <video autoplay muted loop playsinline class="video-bg">
+            <source src="bkg.mp4" type="video/mp4">
+            <div class="absolute inset-0 bg-gray-900"></div>
+        </video>
+        
+        <div class="relative z-10 text-center max-w-4xl w-full">
+            <h2 class="text-white text-sm md:text-lg tracking-[0.3em] md:tracking-[0.5em] mb-4 uppercase animate-pulse">Portofolio saya</h2>
+            
+            <h1 class="text-4xl md:text-8xl font-black uppercase italic mb-6 silver-fire leading-tight">
+                iMDe Profil
+            </h1>
+            
+            <div class="space-y-6 mb-10 text-gray-300">
+                <p class="text-base md:text-xl max-w-2xl mx-auto font-bold leading-relaxed drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                    Saya merupakan lulusan SMKN 07 Semarang Jurusan Teknik Elektronika selama 3,5 tahun.
+                    Pernah magang di 𝙋𝙏｡𝙂𝙎𝙄 𝙎𝙖𝙢𝙨𝙪𝙣𝙜 selama 5 bulan & selama setengah tahun setelah lulus,saya ke luar provinsi (Pangkal Pinang, Bangka Belitung)untuk belajar & membantu usaha 𝘾𝙖𝙛𝙚&𝙍𝙚𝙨𝙩𝙤𝙧𝙖𝙣 milik saudara saya.
+                </p>
+                <p class="text-base md:text-xl max-w-2xl mx-auto font-bold leading-relaxed drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                    Selama menjadi siswa di SMKN 07 Semarang saya telah menguasai Teknik Elektronika dasar dan pernah membuat beberapa projek seperti Audio Amplifier, Switch Mode Power Supply, projek 𝗜𝗼𝗧 berbasis Arduino,dan lain-lain.<br>Magang selama 5 bulan di GSI Samsung sebagai Teknisi support Home Appliance,Handphone.
+                </p>
+                <p class="text-base md:text-xl max-w-2xl mx-auto font-bold leading-relaxed drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                 Untuk mengisi waktu gapyear,setelah lulus SMK saya di f&b mencoba beberapa pekerjaan seperti waiters, help cooker, barista dan belajar manajemen usaha.
+                </p>
+                <p class="text-base md:text-xl max-w-2xl mx-auto font-light border-t border-white/20 pt-6 mt-6">
+                    <span class="font-bold text-white">Hobi:</span> Berolahraga, Memelihara Hewan, Membuat konten,Rekreasi.<br>
+                     <span class="font-bold text-white">Status saat ini:</span>Berkuliah di Universitas Dian Nuswantoro Fakultas Ilmu Komputer Studi Teknik Informatika
+                </p>
+            </div>
+            
+            <a href="#projects" class="inline-block border border-white/30 backdrop-blur-sm text-white px-8 py-3 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                Jelajahi Karya
+            </a>
         </div>
     </header>
 
-    <main>
-        <section id="banner">
-            <div class="banner-content">
-                <h1>Hi !</h1>
-                <p data-text="Selamat Datang di halaman saya">Selamat Datang di halaman saya</p>
-                <img src="avatar.jpeg">
+    <section id="projects" class="min-h-screen bg-[#111] flex flex-col justify-center py-20 relative">
+        <div class="px-6 mb-10 flex justify-between items-end border-b border-gray-800 pb-4 mx-6">
+            <h2 class="text-3xl md:text-5xl font-black uppercase text-white tracking-tighter">Riwayat Projek</h2>
+            <div class="hidden md:flex gap-2 text-white items-center animate-bounce">
+                <p class="text-gray-500 text-xs md:text-sm uppercase tracking-widest">Geser</p>
+                <i class="fa-solid fa-arrow-right"></i>
             </div>
-        </section>
-        <section id="profil" class="hidden">
-            <div class="profil-content">
-                <h2>TENTANG PROFIL SAYA</h2>
-                <h3>Latar Belakang</h3>
-                <p> Saya merupakan lulusan SMKN 07 Semarang Jurusan Teknik Elektronika selama 3,5 tahun.
-                    Pernah magang di PT.𝗚𝗦𝗜 𝗦𝗮𝗺𝘀𝘂𝗻𝗴,& Membantu usaha 𝗖𝗮𝗳𝗲&𝗥𝗲𝘀𝘁𝗼𝗿𝗮𝗻 milik Om saya di luar provinsi(Pangkal Pinang,Bangka Belitung) </p>
-                <p>Selama menjadi siswa di SMKN 07 saya telah menguasai Teknik Elektronika dasar dan membuat beberapa projek Box Audio Amplifier,Switch Mode Power Supply dan projek 𝗜𝗼𝗧  berbasis Arduino
-                    seperti Kontrol On/Off Lampu dengan Aplikasi,Alarm Antisipasi Banjir,Penyiram Tanaman otomatis berdasarkan % kelembapan tanah.Projek yang saya tinggalkan untuk sekolah berupa Real Time&Text information Running LED yang bisa diedit di aplikasi.
-                    Dan ada beberapa ilmu Elektronika tambahan seperti Instalasi TV satelit,Praktek memasangan kabel lan(Straight&Crossover),Pemasangan Kabel Fiber Optic,Merangkai Off Grid-PLTS.
-                </p>
-                <p>Diluar sekolah saat magang di PT.𝗚𝗦𝗜 𝗦𝗮𝗺𝘀𝘂𝗻𝗴 saya telah mempelajari tentang service gadget(seperti membongkar pasang Rangkaian,melepas & memasang komponen seluruh gadget) dan service Home Appliance.
-                    Saat gapyear saya mengisi waktu saya dengan membantu usaha Cafe&Restoran milik Om saya mencoba beberapa pekerjaan seperti waiters,help cooker,barista dan belajar manajemen usaha.  </p>
-                    <p> 𝗛𝗼𝗯𝗶 saya yaitu Berolahraga,Memelihara Hewan,Membuat konten baik 2D maupun 3D/foto/video di media sosial.</p>
-            </div>
-            <div class="profil-image">
-                <img src="sticker1.png" alt="Foto Profil">
-            </div>
-        </section>
-        <section id="kontak">
-            <div class="wave-container">
+        </div>
+        
+        <div class="flex overflow-x-auto gap-4 md:gap-8 px-6 pb-10 no-scrollbar snap-x snap-mandatory scroll-pl-6" id="project-container">
+            <a href="projek.html" class="min-w-[85vw] md:min-w-[45vw] snap-center cursor-pointer group project-card block">
+                <div class="relative h-[50vh] md:h-[60vh] overflow-hidden rounded-2xl border border-white/10">
+                    <img src="banjir.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Alarm Antisipasi Banjir" onerror="this.src='https://via.placeholder.com/600x800'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8">
+                        <p class="text-gray-400 text-xs md:text-sm uppercase tracking-widest mb-2">Projek 01</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-white uppercase italic">Alarm Antisipasi Banjir</h3>
+                        <span class="text-xs text-green-400 border border-green-400 px-2 py-1 mt-2 inline-block rounded">Arduino Based</span>
+                    </div>
                 </div>
-            <div class="kontak-content">
-                <h2>Ada saran / Ingin kenal lebih dalam ? </h2>
-                <p>Temukan saya di platform berikut</p>
-                <div class="social-links">
-                    </a>
-                    <a href="https://www.tiktok.com/@djungle23?_t=ZS-90XilwZuLaC&_r=1" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <img src="tiktok-logo.png" alt="TikTok">
-                        <span>TikTok</span>
-                    </a>
-                    <a href="https://discord.gg/9raKEmMa" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <img src="discord-logo.png" alt="Discord">
-                        <span>Discord</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
+            </a>
 
-    <script src="script.js"></script>
+            <a href="projek2.html" class="min-w-[85vw] md:min-w-[45vw] snap-center cursor-pointer group project-card block">
+                <div class="relative h-[50vh] md:h-[60vh] overflow-hidden rounded-2xl border border-white/10">
+                    <img src="led.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Power Supply" onerror="this.src='https://via.placeholder.com/600x800'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8">
+                        <p class="text-gray-400 text-xs md:text-sm uppercase tracking-widest mb-2">Projek 02</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-white uppercase italic">Power Supply</h3>
+                        <span class="text-xs text-blue-400 border border-blue-400 px-2 py-1 mt-2 inline-block rounded">Elektronika</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="projek.html" class="min-w-[85vw] md:min-w-[45vw] snap-center cursor-pointer group project-card block">
+                <div class="relative h-[50vh] md:h-[60vh] overflow-hidden rounded-2xl border border-white/10">
+                    <img src="profil.png" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Audio Amplifier" onerror="this.src='https://via.placeholder.com/600x800'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8">
+                        <p class="text-gray-400 text-xs md:text-sm uppercase tracking-widest mb-2">Projek 03</p>
+                        <h3 class="text-2xl md:text-3xl font-bold text-white uppercase italic">Box Audio</h3>
+                        <span class="text-xs text-yellow-400 border border-yellow-400 px-2 py-1 mt-2 inline-block rounded">Amplifier</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-white text-black py-16 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            
+            <div class="mb-10 md:mb-0">
+                <h2 class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-4">Go crazy with<br>the new.</h2>
+                <p class="text-gray-600 text-base md:text-lg font-medium">Mari berkolaborasi untuk ide besar berikutnya</p>
+            </div>
+
+            <div class="flex gap-4 md:gap-6">
+                <a href="https://www.instagram.com/3dapp.hh?igsh=MXhqb2l0Znc1c3Bpcw==" target="_blank" class="w-12 h-12 md:w-16 md:h-16 border-2 border-black rounded-full flex justify-center items-center hover:bg-black hover:text-white transition-all duration-300 text-xl md:text-2xl group">
+                    <i class="fa-brands fa-instagram group-hover:rotate-12 transition-transform"></i>
+                </a>
+                <a href="https://www.tiktok.com/@djungle23?_t=ZS-90XilwZuLaC&_r=1" target="_blank" class="w-12 h-12 md:w-16 md:h-16 border-2 border-black rounded-full flex justify-center items-center hover:bg-black hover:text-white transition-all duration-300 text-xl md:text-2xl group">
+                    <i class="fa-brands fa-tiktok group-hover:rotate-12 transition-transform"></i>
+                </a>
+        
+                <a href="mailto:sidaffa21@gmail.com" class="w-12 h-12 md:w-16 md:h-16 border-2 border-black rounded-full flex justify-center items-center hover:bg-black hover:text-white transition-all duration-300 text-xl md:text-2xl group">
+                    <i class="fa-regular fa-envelope group-hover:rotate-12 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="mt-16 border-t border-gray-300 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-bold uppercase tracking-widest text-gray-500 gap-4">
+            <p>&copy; 2025 iMDe Profil</p>
+            <p>Designed with TWC Channel</p>
+        </div>
+    </footer>
+
+    <script>
+        const container = document.getElementById('project-container');
+        
+        container.addEventListener('wheel', (evt) => {
+            evt.preventDefault();
+            container.scrollLeft += evt.deltaY;
+        });
+    </script>
 </body>
-
 </html>
-
-
-
-
